@@ -1,3 +1,9 @@
 spring:
-  application:
-    name: kdt-board
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306/kdt-spring?sslMode=DISABLED
+    username: root
+    password: kdtpass
+  jpa:
+    hibernate:
+      ddl-auto: none
+    show-sql: true
