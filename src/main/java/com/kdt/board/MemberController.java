@@ -15,10 +15,10 @@ public class MemberController {
     }
 
     @GetMapping("/members")
-    public String members(){
+    public String members() {
         StringBuilder lines = new StringBuilder();
 
-        for(Member member : this.memberService.findAll()){
+        for (Member member : this.memberService.findAll()) {
             lines.append(member.getId())
                     .append("")
                     .append(member.getLoginId())
@@ -28,4 +28,13 @@ public class MemberController {
         }
         return lines.toString();
     }
+
+    @GetMapping("/test/members")
+    public String testMembers() {
+        String a = "kdt01";
+        this.memberService.findByNickname(a);
+        return "ok";
+    }
+
 }
+

@@ -2,6 +2,10 @@ package com.kdt.board;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
+
 @Entity
 @Table(name = "board_member")
 public class Member {
@@ -9,13 +13,20 @@ public class Member {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false,unique = true,length = 20)
+    @Column(nullable = false, unique = true, length = 20)
     private String loginId;
 
-    @Column(nullable = false,length = 20)
+    @Column(nullable = false, length = 20)
     private String nickname;
 
     public Member() {
+    }
+
+    @OneToMany(mappedBy = "member", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Post> posts = new ArrayList<>();
+
+    public void addPost(Post post){
+        this.posts.add(post);
     }
 
     public Member(String loginId, String nickname) {

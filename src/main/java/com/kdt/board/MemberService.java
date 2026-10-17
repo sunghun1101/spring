@@ -15,15 +15,30 @@ public class MemberService {
 
     }
 
-    public Member save(Member member){
+    public Member save(Member member) {
         return this.memberRepository.save(member);
     }
 
-    public List<Member> findAll(){
+    public List<Member> findAll() {
         return this.memberRepository.findAll();
     }
 
-    public Member findBuId(long id){
+    public Member findById(long id) {
         return this.memberRepository.findById(id).orElse(null);
     }
+
+    public Member findByLoginId(String loginId) {
+        return this.memberRepository.findByLoginId(loginId).orElseGet(null);
+    }
+
+    public List<Member> findByNickname(String nickname) {
+        List<Member> members = this.memberRepository.findByNickname(nickname);
+        if (members.isEmpty()) {
+            System.out.println("no");
+            return null;
+        }
+        return members;
+    }
+
+
 }

@@ -1,9 +1,14 @@
 spring:
   datasource:
-    url: jdbc:mysql://127.0.0.1:3306/kdt-spring?sslMode=DISABLED
+    url: jdbc:mysql://127.0.0.1:3306/kdt-spring?allowPublicKeyRetrieval=true&sslMode=DISABLED
     username: root
     password: kdtpass
   jpa:
     hibernate:
       ddl-auto: none
     show-sql: true
+    properties:
+      hibernate:
+        format_sql: true            # SQL을 보기 좋게 개행(포맷팅)하여 출력
+        highlight_sql: true         # 콘솔에 SQL을 보기 편하게 하이라이팅
+        use_sql_comments: true      # SQL 내부에 주석(/* ... */)을 추가해 디버깅 용이
